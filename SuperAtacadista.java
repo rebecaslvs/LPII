@@ -1,75 +1,121 @@
-/*Neste projeto, propõe-se administrar o empilhamento, no interior de determinado supermercado atacadista, de paletes, sendo estes
-basicamente estrados de madeira, metal ou plástico amplamente utilizados na movimentação de cargas. Para fins de simplificação,
-considere apenas um porta paletes do referido supermercado com 6 (seis) posições de empilhamento e com 3 (três) níveis de
-prateleiras, conforme ilustrado na figura abaixo (à esquerda).
-
-Ao registrar o empilhamento de um palete, dele deverão ser exigidas as seguintes informações: a) peso da carga (em quilogramas);
-b) tipo de mercadoria (bebidas, cereais, enlatados, higiene pessoal e material de limpeza); e c) posição de empilhamento. Além
-disso, um identificador único deverá estar associado àquele palete, a ser usado em futuras operações de empilhamento e
-desempilhamento (ou seja, não se admitirá que dois ou mais paletes, ainda que localizados em posições de empilhamento distintas,
-possuam o mesmo identificador). Por fim, apesar de possível, considere que o protocolo de empilhamento adotado pelo
-supermercado impede, a qualquer tempo, que níveis inferiores do porta paletes estejam vazios se houver paletes nos níveis
-superiores correspondentes; trata-se de restrição aplicável inclusive durante as operações de empilhamento e desempilhamento (para
-fins de exemplificação, na mesma figura acima, à direita, é ilustrada configuração de empilhamento do porta paletes que é inválida).
-O uso de coleções genéricas concretas para a manipulação de pilhas é obrigatório. A aplicação desenvolvida deve dispor ainda
-das seguintes funcionalidades e/ou restrições:
-
-Uso das letras A, B, C, D, E e F, para fins de identificação das 6 (seis) posições de empilhamento;
-
-Identificador de palete da forma ch.n, onde ch corresponde à posição de empilhamento (uma letra, portanto) e n ao número
-sequencial de inserção do palete independentemente do nível de prateleira em que ele estará posicionado (a título de exemplo,
-em caso de empilhamento de dois palete na posição A supondo que ela esteja vazia inicialmente, eles seriam identificados,
-respectivamente, por A.1 e A.2);
-• Impedimento de dois ou mais paletes possuírem mesmo identificador, ainda que esse identificador tenho sido associado
-anteriormente a um palete já retirado do porta palete (estendendo o exemplo anterior, em caso de empilhamento de novo palete
-na posição A, seu identificador seria A.3, independentemente de algum ou ambos os paletes de identificadores A.1 e A.2 terem
-sido retirados ou não);
-• Impedimento da colocação de mais que 3 (três) paletes em cada posição de empilhamento e de 1 (um) palete em cada nível de
-prateleira daquela posição;
-• Retirada de palete empilhada, pela entrada de seu número de identificação único e observando-se que, em caso de tal palete não
-estiver localizado no topo de sua respectiva posição de empilhamento, todos os paletes posicionados em níveis acima dele
-deverão ser retirados e, após remoção do palete, devolvidos imediatamente àquela posição;
-• Consultas sobre os paletes que se encontram empilhados, a saber: a) dados de peso de carga e tipo de mercadoria de palete
-localizado no topo de determinada posição de empilhamento; b) quantidade de paletes por tipo de mercadoria; c) peso total de
-cargas empilhadas por tipo de mercadoria (bebidas, cereais, enlatados, higiene pessoal e material de limpeza),
-independentemente dos paletes em que se encontram; e e) posições de empilhamento vazias (ou seja, sem paletes empilhados).
-
- * - prateleira : Pilha
-- palete : Palete
-+ consultaTopo() : void
-+ consutaPeso() : void
-+ consultaVazia() : void
-+ consultaQuantidade() : void
-
- */
 package superatacadista;
 
-import java.util.Scanner;
-import java.util.ArrayList; //usar o add que adiciona o elemento na posição desejada
+//import java.util.ArrayList; //usar o add que adiciona o elemento na posição desejada
 import java.util.Stack;
+import java.util.Scanner; //vai pedir para avisar 
 
 public class SuperAtacadista 
 {
     public static void main(String[] args)
     {
+        Stack <String> paletes_nivel1 = new Stack <>();
+        //Stack <String> paletes_nivel2 = new Stack <>();
+        //Stack <String> paletes_nivel3 = new Stack <>();
+        
         Scanner leitor = new Scanner(System.in);
-        String identificador;
-        Stack <String> paletes = new Stack <>();
-        //private Pilha prateleira;
-        //private Palete palete;
         
-        //Palete palete1 = new Palete ( 100f, "higiene", "A2", (int) 5f);
+        float peso_mercadoria;
+        int escolha = 0;
+        int [] numero = new int [6];
+        String tipo_mercadoria;
+        
+       // Stack<String>[] p = null;
+        
+      //  for(int i =0; i<p.length; i++)
+        //{
+          //  p[i] = new Stack<String>();
+        //}
+        int posicao = 0;
+        
+//        if(p[posicao].size()==3){
+  //          System.out.println("Posição de empilhamento cheia!");
+   //     }
+        
+        //int controle;
+        //String comparacao;
+        // String controle;
+        
+        //ver a questão do nível 
+        
+      //tirar a posição das caracteristicas, só serve para indicar msm
+        
+        System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou 2 para não: ");
+        escolha=leitor.nextInt();
+        
+        if(escolha==1)
+        {
+            System.out.println("Esse palete será inserido em qual posição? (A, B, C, D, E ou F): ");
+            String menu_pp=leitor.next();
+            
+            if("A".equals(menu_pp)==true)
+            {
+                System.out.println("Qual o tipo de mercadoria? ");
+                tipo_mercadoria=leitor.next();
+                System.out.println("Qual o peso da mercadoria? ");
+                peso_mercadoria=leitor.nextFloat();
+                
+                Palete p1 = new Palete(tipo_mercadoria,peso_mercadoria);
+                p1.setPosicao("A");
+                // p1.setN(numero+1);
+                p1.setIdentificador(p1.getPosicao() + numero[posicao+1]);
+                numero[posicao]++;
+                //p1.getIdentificador();                
+                
+                //paletes_nivel1.push(p1.getIdentificador());
+                
+                System.out.println("POSIÇÃO= "+ p1.getPosicao());
+                System.out.println("ID= "+ p1.getIdentificador());
+                
+                System.out.println("TOPO DA PILHA 1: " + paletes_nivel1.peek());
+                // }
+            }else System.out.println("Posição diferente de A");
+        }else if (escolha == 2)
+        {
+            System.out.println("Ok, o programa será encerrado.");
+        } else
+            System.out.println("ENTRADA INVÁLIDA! POR FAVOR ESCOLHA UMA OPÇÃO VÁLIDA.");
+      
+    //  Palete p1 = new Palete("A","BEBIDA",100);
+      //  Palete p2 = new Palete("B","HIGIENE PESSOAL",150);
+        //Palete p3 = new Palete ("A", "BEBIDA", 200);
+        
+      /*  //if()
+        p1.setN(numero+1);
+        p1.setIdentificador(p1.getPosicao() + p1.getN());
+        p1.getIdentificador();
+        paletes_nivel1.push(p1.getIdentificador());
+        System.out.println("POSIÇÃO= "+ p1.getPosicao());
+        System.out.println("NÚMERO= "+ p1.getN());
+        System.out.println("ID= "+ p1.getIdentificador());
        // System.out.println("PALETE= " + palete1.getId());
-       
-        System.out.println("DIGITE O ID DO PALETE QUE DESEJA CADASTRAR: ");
-        identificador=leitor.nextLine();
-        paletes.push(identificador);
+        System.out.println("");
         
         
+        p2.setN(numero+1);
+        p2.setIdentificador(p2.getPosicao() + p2.getN());
+        p2.getIdentificador();
+        paletes_nivel2.push(p2.getIdentificador());
+        System.out.println("POSIÇÃO= "+ p2.getPosicao());
+        System.out.println("NÚMERO= "+ p2.getN());
+        System.out.println("ID= "+ p2.getIdentificador());
+        System.out.println("");
         
-        System.out.println("TOPO DA PILHA: " + paletes.peek()); //se fosse para retirar o elemento do topo seria pop
+        p3.setN(numero+2);
+        p3.setIdentificador(p3.getPosicao() + p3.getN());
+        p3.getIdentificador();
+        paletes_nivel1.push(p3.getIdentificador());
+        System.out.println("POSIÇÃO= "+ p3.getPosicao());
+        System.out.println("NÚMERO= "+ p3.getN());
+        System.out.println("ID= "+ p3.getIdentificador());
+        System.out.println("");
+        
+        //deque
+        
+        System.out.println("TOPO DA PILHA 1: " + paletes_nivel1.peek()); //se fosse para retirar o elemento do topo seria pop
+        System.out.println("TOPO DA PILHA 2: " + paletes_nivel2.peek()); //se fosse para retirar o elemento do topo seria pop
         //se fosse para ver se a pilha está vazia ou não seria o empty
-        System.out.println("" + paletes);
+       // System.out.println("" + paletes);
+    */
+        
     }
-    
 }
