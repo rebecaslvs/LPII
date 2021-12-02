@@ -6,8 +6,11 @@
  */
 package superatacadista;
 
-public class Pilha 
-{
-    private String posicao;
-    private int nivel;
+public class Pilha
+{     
+    
+    public void empilhar()
+    {
+        System.out.println("PALETE EMPILHADO COM SUCESSO!");
+    }
 }
