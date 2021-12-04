@@ -105,8 +105,8 @@ public class Palete {
             System.out.println("Esse palete será inserido em qual posição(A, B, C, D, E ou F): ");
             String menu_pp = leitor.nextLine();
 
-            if ("A".equals(menu_pp) == true) {
-                if (paletes_nivel1.size() == 3) {
+            if ("A".equals(menu_pp) == true) { //usar lenght para verificar
+                if (paletes_nivel1.size() == 3) { //tentar usar o equals para comparar com o contador e ver se é igual a três igual fiz com o de cima
                     System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
                 } else {
 
@@ -130,7 +130,7 @@ public class Palete {
                     }
                 }
             } else if ("B".equals(menu_pp) == true) {
-                if (paletes_nivel1.size() == 3) {
+                if (paletes_nivel2.size() == 3) {
                     System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
                 } else {
                     System.out.println("Qual o tipo de mercadoria? ");
@@ -139,7 +139,7 @@ public class Palete {
                     peso_mercadoria = leitor.nextFloat();
 
                     identificador = (menu_pp) + (numero_b[posicaob] + 1);
-                    numero_b[posicaoa]++;
+                    numero_b[posicaob]++;
                     paletes_nivel2.add(identificador);
                     System.out.println(identificador);
 
