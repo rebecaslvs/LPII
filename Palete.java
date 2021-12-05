@@ -207,7 +207,7 @@ public class Palete {
                   
               }else if(menu==4)
              {
-                System.out.println("****QUANTIDADE DE PRODUTOS POR TIPO DE MERCADORIA****");
+                System.out.println("****QUANTIDADE DE PALETES POR TIPO DE MERCADORIA****");
                 System.out.println("BEBIDAS = "+ cont_bebida);
                 System.out.println("CEREAIS = "+ cont_cereal);
                 System.out.println("ENLATADOS = "+ cont_enlatado);
