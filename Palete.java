@@ -9,6 +9,7 @@ package superatacadista;
 
 import java.util.ArrayDeque;
 import java.util.Scanner;
+import java.util.Iterator;
 
 public class Palete {
 
@@ -176,9 +177,36 @@ public class Palete {
         {
             p1.empilhar();
             
-        } else
-            if(menu==4)
+        } else if (menu == 2)
             {
+                String busca;
+                System.out.println("Digite ID do palete que deseja remover (formato ch.n): ");
+                busca = leitor.next();
+                
+                Iterator <Palete> iterator1 = paletes_nivel1.iterator();
+		while (iterator1.hasNext()) 
+                {
+			Palete palete = iterator1.next();
+                        
+			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
+                        {
+				iterator1.remove();
+			}
+                        else
+                        {   
+                            System.out.println("");
+                            System.out.println("Palete não localizado!");
+                            System.out.println("");
+                            menuprincipal();
+                        }
+                            
+		}
+                menuprincipal();
+              } else if(menu==3)
+              {
+                  
+              }else if(menu==4)
+             {
                 System.out.println("****QUANTIDADE DE PRODUTOS POR TIPO DE MERCADORIA****");
                 System.out.println("BEBIDAS = "+ cont_bebida);
                 System.out.println("CEREAIS = "+ cont_cereal);
@@ -187,9 +215,10 @@ public class Palete {
                 System.out.println("MATERIAL DE LIMPEZA = "+ cont_limpeza);
                 System.out.println("");
                 menuprincipal();
-            }else
-                if(menu==5)
+                
+                }else if(menu==5)
                 {
+                    
                 System.out.println("****PESO TOTAL POR TIPO DE MERCADORIA****");
                 System.out.println("BEBIDAS = "+ peso_bebida + " quilos");
                 System.out.println("CEREAIS = "+ peso_cereal+ " quilos");
@@ -200,16 +229,12 @@ public class Palete {
                 menuprincipal();
                 }
             
-            if (menu == 3) //não está funcionando ainda
-        {
-            String busca;
-            System.out.println("Digite ID do palete que deseja consultar (formato ch.n): ");
-            busca = leitor.next();
-        } else {
+                else if(menu==6) {
+                }
+        
             System.out.println("PALETE A: "+ paletes_nivel1.toString());
             System.out.println("PALETE B" + paletes_nivel2.toString());
         }
-    }
     
     void empilhar() {
         
@@ -258,7 +283,6 @@ public class Palete {
                     Palete palete = new Palete (tipo_mercadoria, peso_mercadoria, identificador);
                     
                     paletes_nivel2.add(palete);
-                    //System.out.println(identificador);
 
                     System.out.println("Palete adicionado a posição B e ao nível " + numero_b[posicaob]);
 
