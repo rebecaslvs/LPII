@@ -30,6 +30,10 @@ public class Palete {
 
     int[] numero_a = new int[10000000];
     int[] numero_b = new int[10000000];
+    int[] numero_c = new int[10000000];
+    int[] numero_d = new int[10000000];
+    int[] numero_e = new int[10000000];
+    int[] numero_f = new int[10000000];
     
     int cont_bebida=0;
     int cont_cereal=0;
@@ -45,11 +49,26 @@ public class Palete {
 
     int posicaoa = 1;
     int posicaob = 1;
+    int posicaoc = 1;
+    int posicaod = 1;
+    int posicaoe = 1;
+    int posicaof = 1;
     
     ArrayDeque<Palete> paletes_nivel1 = new ArrayDeque<>(3);
     ArrayDeque<Palete> paletes_nivel2 = new ArrayDeque<>(3);
-    ArrayDeque<String> paletes_nivel3 = new ArrayDeque<>(3);
+    ArrayDeque<Palete> paletes_nivel3 = new ArrayDeque<>(3);
+    ArrayDeque<Palete> paletes_nivel4 = new ArrayDeque<>(3);
+    ArrayDeque<Palete> paletes_nivel5 = new ArrayDeque<>(3);
+    ArrayDeque<Palete> paletes_nivel6 = new ArrayDeque<>(3);
 
+    
+    Iterator <Palete> iterator1 = paletes_nivel1.iterator();
+    Iterator <Palete> iterator2 = paletes_nivel2.iterator();
+    Iterator <Palete> iterator3 = paletes_nivel3.iterator();
+    Iterator <Palete> iterator4 = paletes_nivel4.iterator();
+    Iterator <Palete> iterator5 = paletes_nivel5.iterator();
+    Iterator <Palete> iterator6 = paletes_nivel6.iterator();
+    
     public Palete(String tipo, double peso, String identificador) { //adicionar o identificador aqui
         this.tipo = tipo;
         this.peso = peso;
@@ -183,7 +202,6 @@ public class Palete {
                 System.out.println("Digite ID do palete que deseja remover (formato ch.n): ");
                 busca = leitor.next();
                 
-                Iterator <Palete> iterator1 = paletes_nivel1.iterator();
 		while (iterator1.hasNext()) 
                 {
 			Palete palete = iterator1.next();
@@ -191,17 +209,61 @@ public class Palete {
 			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
                         {
 				iterator1.remove();
-			}
-                        else
-                        {   
-                            System.out.println("");
-                            System.out.println("Palete não localizado!");
-                            System.out.println("");
-                            menuprincipal();
-                        }
-                            
+			}   
 		}
+                
+                while (iterator2.hasNext()) 
+                {
+			Palete palete = iterator2.next();
+                        
+			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
+                        {
+				iterator2.remove();
+			}   
+		}
+                
+                while (iterator3.hasNext()) 
+                {
+			Palete palete = iterator3.next();
+                        
+			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
+                        {
+				iterator3.remove();
+			}   
+		}
+                
+                while (iterator4.hasNext()) 
+                {
+			Palete palete = iterator4.next();
+                        
+			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
+                        {
+				iterator4.remove();
+			}   
+		}
+                
+                while (iterator5.hasNext()) 
+                {
+			Palete palete = iterator5.next();
+                        
+			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
+                        {
+				iterator5.remove();
+			}   
+		}
+                
+                while (iterator6.hasNext()) 
+                {
+			Palete palete = iterator6.next();
+                        
+			if (palete.getIdentificador() == null ? busca == null : palete.getIdentificador().equals(busca)) 
+                        {
+				iterator6.remove();
+			}   
+		}
+                
                 menuprincipal();
+                
               } else if(menu==3)
               {
                   
@@ -229,8 +291,15 @@ public class Palete {
                 menuprincipal();
                 }
             
-                else if(menu==6) {
-                }
+                else if(menu==6) 
+                {
+                    if (numero_a[posicaoa]==0) 
+                    {
+                        System.out.println("Posição A vazia!");
+                    }
+                        
+                        menuprincipal();
+                }               
         
             System.out.println("PALETE A: "+ paletes_nivel1.toString());
             System.out.println("PALETE B" + paletes_nivel2.toString());
@@ -251,7 +320,6 @@ public class Palete {
                 } else {
                     menu_tipo();
                     
-
                     identificador = (menu_pp) + (numero_a[posicaoa] + 1);
                     numero_a[posicaoa]++;
                     
@@ -259,7 +327,6 @@ public class Palete {
                     
                     System.out.println("Palete adicionado a posição A e ao nível " + numero_a[posicaoa]);
                     paletes_nivel1.add(palete);
-                    //System.out.println(identificador);
 
                     System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou digite qualquer outra tecla para não: ");
                     escolha = leitor.nextInt();
@@ -272,19 +339,16 @@ public class Palete {
                     System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
                     menuprincipal();
                 } else {
-                    System.out.println("Qual o tipo de mercadoria? ");
-                    tipo_mercadoria = leitor.nextLine();
-                    System.out.println("Qual o peso da mercadoria? ");
-                    peso_mercadoria = leitor.nextFloat();
+                    menu_tipo();
 
                     identificador = (menu_pp) + (numero_b[posicaob] + 1);
                     numero_b[posicaob]++;
                     
                     Palete palete = new Palete (tipo_mercadoria, peso_mercadoria, identificador);
                     
+                    System.out.println("Palete adicionado a posição B e ao nível " + numero_b[posicaob]);
                     paletes_nivel2.add(palete);
 
-                    System.out.println("Palete adicionado a posição B e ao nível " + numero_b[posicaob]);
 
                     System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou digite qualquer outra tecla para não: ");
                     escolha = leitor.nextInt();
@@ -292,7 +356,99 @@ public class Palete {
                        menuprincipal();
                     }
                 }
-            }
+            } else if ("C".equals(menu_pp) == true) {
+                if (numero_c[posicaoc] == 3) {
+                    System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
+                    menuprincipal();
+                } else {
+                    menu_tipo();
+
+                    identificador = (menu_pp) + (numero_c[posicaoc] + 1);
+                    numero_c[posicaoc]++;
+                    
+                    Palete palete = new Palete (tipo_mercadoria, peso_mercadoria, identificador);
+                    
+                    System.out.println("Palete adicionado a posição C e ao nível " + numero_c[posicaoc]);
+                    paletes_nivel3.add(palete);
+
+
+                    System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou digite qualquer outra tecla para não: ");
+                    escolha = leitor.nextInt();
+                    if (escolha != 1) {
+                       menuprincipal();
+                    }
         }
+    } else if ("D".equals(menu_pp) == true) {
+                if (numero_d[posicaod] == 3) {
+                    System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
+                    menuprincipal();
+                } else {
+                    menu_tipo();
+
+                    identificador = (menu_pp) + (numero_d[posicaod] + 1);
+                    numero_d[posicaod]++;
+                    
+                    Palete palete = new Palete (tipo_mercadoria, peso_mercadoria, identificador);
+                    
+                    System.out.println("Palete adicionado a posição D e ao nível " + numero_d[posicaod]);
+                    paletes_nivel4.add(palete);
+
+
+                    System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou digite qualquer outra tecla para não: ");
+                    escolha = leitor.nextInt();
+                    if (escolha != 1) {
+                       menuprincipal();
+                    }
+        }
+    } else if ("E".equals(menu_pp) == true) {
+                if (numero_e[posicaoe] == 3) {
+                    System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
+                    menuprincipal();
+                } else {
+                    menu_tipo();
+
+                    identificador = (menu_pp) + (numero_e[posicaoe] + 1);
+                    numero_e[posicaoe]++;
+                    
+                    Palete palete = new Palete (tipo_mercadoria, peso_mercadoria, identificador);
+                    
+                    System.out.println("Palete adicionado a posição E e ao nível " + numero_e[posicaoe]);
+                    paletes_nivel5.add(palete);
+
+
+                    System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou digite qualquer outra tecla para não: ");
+                    escolha = leitor.nextInt();
+                    if (escolha != 1) {
+                       menuprincipal();
+                    }
+        }
+    } else if ("F".equals(menu_pp) == true) {
+                if (numero_f[posicaof] == 3) {
+                    System.out.println("POSIÇÃO DE EMPILHAMENTO CHEIA!");
+                    menuprincipal();
+                } else {
+                    menu_tipo();
+
+                    identificador = (menu_pp) + (numero_f[posicaof] + 1);
+                    numero_f[posicaof]++;
+                    
+                    Palete palete = new Palete (tipo_mercadoria, peso_mercadoria, identificador);
+                    
+                    System.out.println("Palete adicionado a posição B e ao nível " + numero_f[posicaof]);
+                    paletes_nivel6.add(palete);
+
+
+                    System.out.println("Você deseja empilhar um novo palete? Responda com 1 para sim ou digite qualquer outra tecla para não: ");
+                    escolha = leitor.nextInt();
+                    if (escolha != 1) {
+                       menuprincipal();
+                    }
+        }
+    } else
+    {
+        System.out.println("Posição inválida!");
+        menuprincipal();
+    }
+}
     }
 }
